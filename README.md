@@ -1,17 +1,10 @@
-# Проект: Место
+# Project: Mesto
+A flexible one-page website with responsive image grid created according to a given training brief. 
+Represents the service Mesto: an interactive page where you can add photos, delete them and give the likes.
+Objective: to create the site, write some of the logic in JavaScript, publish in Git.
+Technologies used: 
+* HTML.
+* CSS (Grid, Flex, media queries).
+* JavaScript.
 
-### Обзор
-
-* Figma
-* Картинки
-
-**Figma**
-
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-
-**Картинки**
-
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
-
-Удачи!
+https://alexanderloginov713.github.io/mesto/
