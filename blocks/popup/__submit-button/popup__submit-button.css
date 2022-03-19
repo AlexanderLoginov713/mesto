@@ -11,4 +11,9 @@
   text-align: center;
   background: #000;
   border-radius: 2px;
+  transition: opacity .3s ease-in;
+}
+
+.popup__submit-button:hover {
+  opacity: 0.8;
 }
