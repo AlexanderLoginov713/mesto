@@ -20,7 +20,7 @@
   }
 }
 
-@media screen and (max-width: 580px) {
+@media screen and (max-width: 560px) {
   .elements {
     display: block;
     margin-bottom: 48px;

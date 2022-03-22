@@ -1,13 +1,13 @@
-let popupElement = document.querySelector('.popup');
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = popupElement.querySelector('.popup__close-button');
-let ESC_KEY = "Escape";
-let formElement = document.querySelector('.popup__form');
-let nameInput = formElement.querySelector('input[name=name]');
-let jobInput = formElement.querySelector('input[name=job]');
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
-let likeButtons = document.querySelectorAll('.element__like-btn');
+const popupElement = document.querySelector('.popup');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButton = popupElement.querySelector('.popup__close-button');
+const ESC_KEY = "Escape";
+const formElement = document.querySelector('.popup__form');
+const nameInput = formElement.querySelector('input[name=name]');
+const jobInput = formElement.querySelector('input[name=job]');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
+const likeButtons = document.querySelectorAll('.element__like-btn');
 
 for (let likeButton of likeButtons) {
     likeButton.onclick = function () {
@@ -17,6 +17,8 @@ for (let likeButton of likeButtons) {
 
 function openPopup () {
   popupElement.classList.add('popup_opened');
+  profileName.value = profileName.textContent;
+  profileJob.value = profileJob.textContent;
   document.addEventListener('keyup', onDocumentKeyUp);
 }
 

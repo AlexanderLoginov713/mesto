@@ -6,6 +6,9 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
   color: #FFFFFF;
 }
 
