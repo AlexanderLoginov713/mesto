@@ -7,13 +7,13 @@ const nameInput = formElement.querySelector('input[name=name]');
 const jobInput = formElement.querySelector('input[name=job]');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-//const likeButtons = document.querySelectorAll('.element__like-btn');
+const likeButtons = document.querySelectorAll('.element__like-btn');
 
-/*for (let likeButton of likeButtons) {
+for (let likeButton of likeButtons) {
     likeButton.onclick = function () {
     likeButton.classList.toggle('element__like-btn_active');
   }
-}*///
+}
 
 function openPopup () {
   popupElement.classList.add('popup_opened');
