@@ -42,6 +42,10 @@ const createCard = (cardName, cardLink) => {
   element.querySelector('.element__title').textContent = cardName;
   element.querySelector('.element__image').src = cardLink;
 
+  element.querySelector('.element__trash-btn').addEventListener('click', () => {
+    element.remove();
+  });
+
   element.querySelector('.element__like-btn').addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__like-btn_active');
   });
@@ -53,7 +57,7 @@ const elements = initialCards.map(function(item) {
   return createCard(item.name, item.link);
 });
 
-elementsContainer.prepend(...elements);
+elementsContainer.append(...elements);
 
 function openPopup () {
   popupElement.classList.add('popup_opened');
