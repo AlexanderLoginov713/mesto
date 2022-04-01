@@ -21,7 +21,7 @@
             <button type="button" class="profile__edit-button"></button>
             <p class="profile__job">Исследователь океана</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button type="submit" class="profile__add-button"></button>
         </section>
         <!--elements-->
         <section class="elements"></section>
@@ -45,9 +45,32 @@
       </div>
     </div>
 
-    <template id = "element-template">
+    <div class="popup popup_add-element">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <section class="popup__content">
+          <h3 class="popup__title">Новое место</h3>
+          <form name="add-element" class="popup__form popup__form_add-element">
+            <input type="text" value="Название" name="addPlaceName" class="popup__input">
+            <input type="text" value="Ссылка на картинку" name="addPhotoLink" class="popup__input">
+            <button type="submit" class="popup__submit-button popup__submit-button_add-element">Создать</button>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <div class="popup popup_view-image">
+      <div class="popup__image-container">
+        <button type="button" class="popup__close-button"></button>
+        <img src="#" alt="Изображение от пользователя" class="popup__image">
+        <h2 class="popup__image-title"></h2>
+      </div>
+    </div>
+
+    <template class = "element-template">
       <article class="element">
-        <img src="#" class="element__image">
+        <button type="button" class="element__trash-btn"></button>
+        <img src="#" alt="Изображение от пользователя" class="element__image">
         <div class="element__description">
           <h2 class="element__title"></h2>
           <button type="button" class="element__like-btn"></button>
