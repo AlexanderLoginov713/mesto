@@ -2,12 +2,12 @@ const popups = document.querySelectorAll('.popup');
 
 const profilePopup = document.querySelector('.profile-popup');
 const editButton = document.querySelector('.profile__edit-button');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
 
 const formElement = document.querySelector('.popup__form_profile');
 const nameInput = formElement.querySelector('input[name=name]');
 const jobInput = formElement.querySelector('input[name=job]');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
 
 const addButton = document.querySelector('.profile__add-button');
 const popupAddElement = document.querySelector('.popup_add-element');
@@ -68,12 +68,12 @@ const createCard = (cardName, cardLink) => {
 const elements = initialCards.map(function(item) {
   return createCard(item.name, item.link);
 });
-
 elementsContainer.append(...elements);
 
 //функции открытия и закрытия попапов
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
+
 }
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
@@ -90,6 +90,8 @@ popups.forEach((popup) => {
 
 //Открытие попапа редактирование профиля
 editButton.addEventListener('click', () => openPopup(profilePopup));
+nameInput.value = profileName.textContent;
+jobInput.value = profileJob.textContent;
 
 //Обработчик «отправки» формы профиля
 const handleProfileFormSubmit = (evt) => {
@@ -123,6 +125,8 @@ const imagePopup = (cardName, cardLink) => {
   popupImage.src = cardLink;
   popupImage.alt = 'Изображение ' + cardName;
 }
+
+console.log(document.querySelector('.popup__input_profile').value);
 
 
 
