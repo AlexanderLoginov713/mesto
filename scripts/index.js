@@ -73,7 +73,6 @@ elementsContainer.append(...elements);
 //функции открытия и закрытия попапов
 const openPopup = (popup) => {
   popup.classList.add('popup_opened');
-
 }
 const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
@@ -89,9 +88,11 @@ popups.forEach((popup) => {
 });
 
 //Открытие попапа редактирование профиля
-editButton.addEventListener('click', () => openPopup(profilePopup));
-nameInput.value = profileName.textContent;
-jobInput.value = profileJob.textContent;
+editButton.addEventListener('click', () =>  {
+  openPopup(profilePopup);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+});
 
 //Обработчик «отправки» формы профиля
 const handleProfileFormSubmit = (evt) => {
