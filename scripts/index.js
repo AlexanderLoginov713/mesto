@@ -126,7 +126,6 @@ const imagePopup = (cardName, cardLink) => {
   popupImage.alt = 'Изображение ' + cardName;
 }
 
-console.log(document.querySelector('.popup__input_profile').value);
 
 
 
