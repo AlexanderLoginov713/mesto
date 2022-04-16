@@ -21,6 +21,8 @@ const popupImageTitle = popupImageElement.querySelector('.popup__image-title');
 
 const template = document.querySelector('.element-template').content;
 
+const ESC_KEY = "Escape";
+
 const initialCards = [
   {
     name: 'Архыз',
@@ -81,10 +83,15 @@ const closePopup = (popup) => {
 //Функция закрытия для всех попапов
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
-     if (evt.target.classList.contains('popup__close-button')) {
+     if (evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup')) {
         closePopup(popup)
       }
   })
+  document.addEventListener('keyup', (evt) => {
+    if (evt.key === ESC_KEY) {
+      closePopup(popup);
+    }
+    });
 });
 
 //Открытие попапа редактирование профиля
@@ -113,9 +120,9 @@ const renderAddElement = (placeNameInput, photoLinkInput) => {
 const handleAddForm = (evt) => {
   evt.preventDefault();
   renderAddElement(placeNameInput, photoLinkInput);
-  closePopup(popupAddElement);
   placeNameInput.value = '';
   photoLinkInput.value = '';
+  closePopup(popupAddElement);
 }
 formAddElement.addEventListener('submit', handleAddForm);
 
@@ -126,6 +133,7 @@ const imagePopup = (cardName, cardLink) => {
   popupImage.src = cardLink;
   popupImage.alt = 'Изображение ' + cardName;
 }
+
 
 
 
