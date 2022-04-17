@@ -37,56 +37,63 @@
         <section class="popup__content">
           <h3 class="popup__title">Редактировать профиль</h3>
           <form name="profile-edit" class="popup__form popup__form_profile" novalidate>
-            <input
-              type="text"
-              id="name-card"
-              placeholder="Имя"
-              name="name"
-              class="popup__input popup__input_profile"
-              required
-              minlength="2"
-              maxlength="40">
-            <span id="name-card-error" class="error"></span>
-            <input
-              type="text"
-              id="job-card"
-              placeholder="О себе"
-              name="job"
-              class="popup__input popup__input_profile"
-              required
-              minlength="2"
-              maxlength="40">
-            <span id="job-card-error" class="error"></span>
-            <button type="submit" class="popup__submit-button popup__submit-button_profile">Сохранить</button>
-          </form>
+            <label class="popup__field">
+              <input
+                type="text"
+                id="name-card"
+                placeholder="Имя"
+                name="name"
+                class="popup__input popup__input_profile"
+                required
+                minlength="2"
+                maxlength="40">
+              <span id="name-card-error" class="error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                type="text"
+                id="job-card"
+                placeholder="О себе"
+                name="job"
+                class="popup__input popup__input_profile"
+                required
+                minlength="2"
+                maxlength="40">
+              <span id="job-card-error" class="error"></span>
+            </label>
+              <button type="submit" class="popup__submit-button popup__submit-button_profile">Сохранить</button>
+            </form>
         </section>
       </div>
     </div>
-
     <div class="popup popup_add-element">
       <div class="popup__container">
         <button type="button" class="popup__close-button popup__close-button_add-element"></button>
         <section class="popup__content">
           <h3 class="popup__title">Новое место</h3>
           <form name="add-element" class="popup__form popup__form_add-element" novalidate>
-            <input
-              type="text"
-              id="addPlaceName-card"
-              value="Название"
-              name="addPlaceName"
-              class="popup__input popup__input_add-element"
-              required
-              minlength="2"
-              maxlength="30">
-            <span id="addPlaceName-card-error" class="error"></span>
-            <input
-              type="url"
-              id="addPhotoLink-card"
-              value="Ссылка на картинку"
-              name="addPhotoLink"
-              class="popup__input popup__input_add-element"
-              required>
-            <span id="addPhotoLink-card-error" class="error"></span>
+            <label class="popup__field">
+              <input
+                type="text"
+                id="addPlaceName-card"
+                placeholder="Название"
+                name="addPlaceName"
+                class="popup__input popup__input_add-element"
+                required
+                minlength="2"
+                maxlength="30">
+              <span id="addPlaceName-card-error" class="error"></span>
+            </label>
+            <label class="popup__field">
+              <input
+                type="url"
+                id="addPhotoLink-card"
+                placeholder="Ссылка на картинку"
+                name="addPhotoLink"
+                class="popup__input popup__input_add-element"
+                required>
+              <span id="addPhotoLink-card-error" class="error"></span>
+            </label>
             <button type="submit" class="popup__submit-button popup__submit-button_add-element">Создать</button>
           </form>
         </section>
@@ -111,7 +118,6 @@
         </div>
       </article>
     </template>
-
     <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>

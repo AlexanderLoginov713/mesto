@@ -41,6 +41,7 @@
 @import url(../blocks/popup/__submit-button/_invalid/popup__submit-button_invalid.css);
 @import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 @import url(../blocks/popup/__error-text/_status-error/popup__error-text_status-error.css);
+@import url(../blocks/popup/__field/popup__field.css);
 
 
 

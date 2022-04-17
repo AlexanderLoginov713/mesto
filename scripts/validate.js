@@ -23,12 +23,17 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
 const setEventListeners = (formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
+
+  if (formElement.className === 'popup__form popup__form_add-element') {
+    toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  }
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, inputErrorClass, errorClass);
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
     });
   });
+
 };
 
 //Переключение стилей кнопки
