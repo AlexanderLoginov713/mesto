@@ -1,3 +1,7 @@
+
+import { initialCards } from "./constants.js";
+import Card from "./card.js";
+
 const popups = document.querySelectorAll('.popup');
 
 const profilePopup = document.querySelector('.profile-popup');
@@ -15,13 +19,15 @@ const formAddElement = document.querySelector('.popup__form_add-element');
 const placeNameInput = formAddElement.querySelector('input[name=addPlaceName]');
 const photoLinkInput = formAddElement.querySelector('input[name=addPhotoLink]');
 
-const popupImageElement = document.querySelector('.popup_view-image');
-const popupImage = popupImageElement.querySelector('.popup__image');
-const popupImageTitle = popupImageElement.querySelector('.popup__image-title');
+//const popupImageElement = document.querySelector('.popup_view-image');
+//const popupImage = popupImageElement.querySelector('.popup__image');
+//const popupImageTitle = popupImageElement.querySelector('.popup__image-title');
 
-const template = document.querySelector('.element-template').content;
+//const template = document.querySelector('.element-template').content;
 
-const initialCards = [
+const elementsContainer = document.querySelector('.elements');
+
+/*const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -46,11 +52,11 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
+];*/
 
 //Создание карточек из массива при загрузке
-const elementsContainer = document.querySelector('.elements');
-const createCard = (cardName, cardLink) => {
+
+/*const createCard = (cardName, cardLink) => {
   const element = template.querySelector('.element').cloneNode(true);
   const elementImage = element.querySelector('.element__image');
   element.querySelector('.element__title').textContent = cardName;
@@ -65,14 +71,17 @@ const createCard = (cardName, cardLink) => {
   elementImage.addEventListener('click', () => imagePopup (cardName, cardLink));
   return element;
 }
+*/
 
-const elements = initialCards.map(function(item) {
-  return createCard(item.name, item.link);
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '.element-template');
+  const cardElement = card.createCard();
+elementsContainer.append(cardElement);
 });
-elementsContainer.append(...elements);
 
 //функции открытия и закрытия попапов
-const openPopup = (popup) => {
+export const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
@@ -130,14 +139,14 @@ const handleAddForm = (evt) => {
 formAddElement.addEventListener('submit', handleAddForm);
 
 //Попап с картинкой
-const imagePopup = (cardName, cardLink) => {
+/*const imagePopup = (cardName, cardLink) => {
   popupImageTitle.textContent = cardName;
   popupImage.src = cardLink;
   popupImage.alt = 'Изображение ' + cardName;
   openPopup (popupImageElement);
 }
 
-
+*/
 
 
 
