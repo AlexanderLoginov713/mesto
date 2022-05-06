@@ -20,24 +20,24 @@ const placeNameInput = formAddElement.querySelector('input[name=addPlaceName]');
 const photoLinkInput = formAddElement.querySelector('input[name=addPhotoLink]');
 
 const elementsContainer = document.querySelector('.elements');
-const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
+
+const popupImageElement = document.querySelector('.popup_view-image');
+const popupImage = document.querySelector('.popup__image');
+const popupImageTitle = document.querySelector('.popup__image-title');
 
 //Создание карточек из массива при загрузке
-const elements = initialCards.map((item) => {
-  const card = new Card(item, '.element-template');
+const createCard = (item) => {
+  const card = new Card(item, '.element-template', handleCardClick);
   return card.createCard();
-});
+}
+
+const elements = initialCards.map(createCard);
 elementsContainer.append(...elements);
 
-//Открытие попапов с запуском валидации форм
-export const openPopup = (popup) => {
+//Открытие попапов
+const openPopup = (popup) => {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
-
-  formList.forEach((item) => {
-    const validator = new FormValidator(validationSettings, item)
-    validator.enableValidation();
-  });
 }
 
 //Закрытие попапов
@@ -80,8 +80,7 @@ formElement.addEventListener('submit', handleProfileFormSubmit);
 //Добавление нового элемента (карточки)
 addButton.addEventListener('click', () => openPopup(popupAddElement));
 const renderAddElement = (placeNameInput, photoLinkInput) => {
-  const card = new Card({ name: placeNameInput.value, link: photoLinkInput.value }, '.element-template');
-  elementsContainer.prepend(card.createCard());
+  elementsContainer.prepend(createCard({ name: placeNameInput.value, link: photoLinkInput.value }));
 }
 
 // Обработчик «отправки» формы нового элемента (карточки)
@@ -89,10 +88,32 @@ const handleAddForm = (evt) => {
   evt.preventDefault();
   renderAddElement(placeNameInput, photoLinkInput);
   closePopup(popupAddElement);
-  placeNameInput.value = '';
-  photoLinkInput.value = '';
+  formAddElement.reset();
+  formValidators['add-element'].enableValidation(validationSettings);
 }
 formAddElement.addEventListener('submit', handleAddForm);
+
+function handleCardClick (name, link) {
+  popupImageTitle.textContent = name;
+  popupImage.src = link;
+  popupImage.alt = 'Изображение ' +  name;
+  openPopup(popupImageElement);
+}
+
+// Включение валидации
+const formValidators = {}
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute('name');
+    formValidators[formName] = validator;
+   validator.enableValidation();
+  });
+}
+enableValidation(validationSettings);
+
+
 
 
 

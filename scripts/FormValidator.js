@@ -34,7 +34,6 @@ export default class FormValidator {
   _setEventListeners () {
     const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
     const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
-    console.log(buttonElement);
     if (this._formElement.className === 'popup__form popup__form_add-element') {
       this._toggleButtonState(inputList, buttonElement);
     }
