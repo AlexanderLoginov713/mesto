@@ -66,6 +66,7 @@ editButton.addEventListener('click', () =>  {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(profilePopup);
+  formValidators['profile-edit'].resetValidation();
 });
 
 //Обработчик «отправки» формы профиля
@@ -77,8 +78,12 @@ const handleProfileFormSubmit = (evt) => {
 }
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
-//Добавление нового элемента (карточки)
-addButton.addEventListener('click', () => openPopup(popupAddElement));
+//Открытие попапа добавления нового элемента (карточки)
+addButton.addEventListener('click', () => {
+  openPopup(popupAddElement);
+  formValidators['add-element'].resetValidation();
+});
+
 const renderAddElement = (placeNameInput, photoLinkInput) => {
   elementsContainer.prepend(createCard({ name: placeNameInput.value, link: photoLinkInput.value }));
 }
@@ -87,9 +92,8 @@ const renderAddElement = (placeNameInput, photoLinkInput) => {
 const handleAddForm = (evt) => {
   evt.preventDefault();
   renderAddElement(placeNameInput, photoLinkInput);
-  closePopup(popupAddElement);
   formAddElement.reset();
-  formValidators['add-element'].enableValidation(validationSettings);
+  closePopup(popupAddElement);
 }
 formAddElement.addEventListener('submit', handleAddForm);
 
@@ -112,8 +116,3 @@ const enableValidation = (config) => {
   });
 }
 enableValidation(validationSettings);
-
-
-
-
-
