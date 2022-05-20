@@ -1,14 +1,14 @@
-import './pages/index.css';
-import { initialCards } from "./scripts/data.js";
-import { validationSettings } from "./scripts/validationSettings.js";
-import Card from "./scripts/Сard.js";
-import FormValidator from "./scripts/FormValidator.js";
-import Section from "./scripts/Section.js";
-import PopupWithImage from "./scripts/PopupWithImage.js";
-import PopupWithForm from "./scripts/PopupWithForm.js";
-import UserInfo from "./scripts/UserInfo.js";
+import './index.css';
+import { initialCards } from "../utils/data.js";
+import Card from "../scripts/Сard.js";
+import FormValidator from "../scripts/FormValidator.js";
+import Section from "../scripts/Section.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import UserInfo from "../scripts/UserInfo.js";
 
 import {
+  validationSettings,
   cardsContainer,
   profilePopup,
   editButton,
@@ -18,8 +18,13 @@ import {
   popupAddElement,
   popupImageElement,
   popupImage,
-  popupImageTitle
-} from "./scripts/constants.js";
+  popupImageTitle,
+  elementTemplate,
+  profileName,
+  profileJob,
+  profileEdit,
+  addElement
+} from "../utils/constants.js";
 
 function handleCardClick (name, link) {
   popupImageTitle.textContent = name;
@@ -30,7 +35,7 @@ function handleCardClick (name, link) {
 
 //Создание карточек из массива при загрузке
 const rendererForCards = (item) => {
-  const card = new Card (item, '.element-template', handleCardClick);
+  const card = new Card (item, elementTemplate, handleCardClick);
   return(card.createCard())}
 
 const createCard =  new Section ({
@@ -41,13 +46,12 @@ createCard.renderItems();
 
 //
 const userInfo = new UserInfo({
-  name: '.profile__name',
-  job: '.profile__job'
+  name: profileName,
+  job: profileJob
 });
 
 const popupWithImage = new PopupWithImage (popupImageElement);
 popupWithImage.setEventListeners();
-console.log(popupWithImage);
 
 const popupAdd = new PopupWithForm (popupAddElement, (data) => {
   createCard.addItem(rendererForCards(data));
@@ -65,13 +69,13 @@ editButton.addEventListener('click', () =>  {
   nameInput.value = user.name;
   jobInput.value = user.job;
   popupEdit.open();
-  formValidators['profile-edit'].resetValidation();
+  formValidators[profileEdit].resetValidation();
 });
 
 //Открытие попапа добавления нового элемента (карточки)
 addButton.addEventListener('click', () => {
   popupAdd.open();
-  formValidators['add-element'].resetValidation();
+  formValidators[addElement].resetValidation();
 });
 
 // Включение валидации
