@@ -34,9 +34,6 @@ export default class FormValidator {
   }
 
   _setEventListeners () {
-    if (this._formElement.className === 'popup__form popup__form_add-element') {
-      this._toggleButtonState(this._inputList, this._buttonElement);
-    }
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
@@ -71,7 +68,6 @@ export default class FormValidator {
 
     resetValidation() {
       this._toggleButtonState();
-
       this._inputList.forEach((inputElement) => {
         this._hideInputError(inputElement);
       });
