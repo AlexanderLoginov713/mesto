@@ -1,11 +1,12 @@
-import { initialCards } from "./data.js";
-import { validationSettings } from "./validationSettings.js";
-import Card from "./Сard.js";
-import FormValidator from "./FormValidator.js";
-import Section from "./Section.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
+import './pages/index.css';
+import { initialCards } from "./scripts/data.js";
+import { validationSettings } from "./scripts/validationSettings.js";
+import Card from "./scripts/Сard.js";
+import FormValidator from "./scripts/FormValidator.js";
+import Section from "./scripts/Section.js";
+import PopupWithImage from "./scripts/PopupWithImage.js";
+import PopupWithForm from "./scripts/PopupWithForm.js";
+import UserInfo from "./scripts/UserInfo.js";
 
 import {
   cardsContainer,
@@ -18,7 +19,7 @@ import {
   popupImageElement,
   popupImage,
   popupImageTitle
-} from "./constants.js";
+} from "./scripts/constants.js";
 
 function handleCardClick (name, link) {
   popupImageTitle.textContent = name;

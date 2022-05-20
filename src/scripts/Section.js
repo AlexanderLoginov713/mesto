@@ -8,7 +8,7 @@ export default class Section {
     this._initialCards.forEach((item) => {
       this._container.append(this._renderer(item))
     });
- }
+  }
   addItem(element) {
     this._container.prepend(element);
   }
