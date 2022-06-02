@@ -1,11 +1,12 @@
 import './index.css';
-import { initialCards } from "../utils/data.js";
 import Card from "../scripts/Сard.js";
 import FormValidator from "../scripts/FormValidator.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import PopupWithForm from "../scripts/PopupWithForm.js";
 import UserInfo from "../scripts/UserInfo.js";
+import Api from '../scripts/Api.js';
+import { config } from '../utils/data.js';
 
 import {
   validationSettings,
@@ -23,8 +24,24 @@ import {
   profileName,
   profileJob,
   profileEdit,
-  addElement
+  profileAvatar,
+  addElement,
+  popupEditAvatar,
+  editAvatarButton,
+  editAvatarForm
 } from "../utils/constants.js";
+
+const api = new Api(config);
+
+let userId;
+
+//Загрузка данных профиля
+api.getUserInfo()
+  .then((data) => {
+    userInfo.setUserInfo(data);
+    userId = data._id;
+  })
+  .catch(err => console.log(`Ошибка: ${err}`));
 
 function handleCardClick (name, link) {
   popupImageTitle.textContent = name;
@@ -33,41 +50,67 @@ function handleCardClick (name, link) {
   popupWithImage.open({name, link});
 }
 
-//Создание карточек из массива при загрузке
+//Создание карточек при загрузке
+api.getInitialCards()
+.then(data => {
+  const createCard =  new Section ({
+    data: data,
+    renderer: rendererForCards
+  }, cardsContainer)
+  createCard.renderItems();
+})
+.catch(err => console.log(`Ошибка: ${err}`));
+
+
 const rendererForCards = (item) => {
   const card = new Card (item, elementTemplate, handleCardClick);
   return(card.createCard())}
 
-const createCard =  new Section ({
-  data: initialCards,
-  renderer: rendererForCards
-}, cardsContainer);
-createCard.renderItems();
-
 //
 const userInfo = new UserInfo({
   name: profileName,
-  job: profileJob
+  job: profileJob,
+  avatar: profileAvatar
 });
 
 const popupWithImage = new PopupWithImage (popupImageElement);
-popupWithImage.setEventListeners();
 
 const popupAdd = new PopupWithForm (popupAddElement, (data) => {
   createCard.addItem(rendererForCards(data));
 });
-popupAdd.setEventListeners();
 
 const popupEdit = new PopupWithForm(profilePopup, (data) => {
-  userInfo.setUserInfo(data);
+  api.editProfile(data)
+  .then(data => {
+    userInfo.setUserInfo(data);
+  })
+  .catch(err => console.log(`Ошибка: ${err}`));
+  //.finally(() => {
+  //  popupEdit.renderLoading(false, 'Сохранить');
+ // });
 });
-popupEdit.setEventListeners();
+
+const popupAvatar = new PopupWithForm(popupEditAvatar, (data) => {
+    //popUpAvatar.loading(true);
+    api.editAvatar(data)
+    .then(data => {
+      userInfo.setUserInfo(data);
+      popupAvatar.close();
+    })
+    .catch(err => console.log(`Ошибка: ${err}`));
+    })
+    //.finally(() => {
+      //popupAvatar.loading(false);
+      //})
+
+//Открытие попапа редактирование аватара
+editAvatarButton.addEventListener('click', () => {
+  popupAvatar.open();
+  formValidators[editAvatarForm].resetValidation();
+});
 
 //Открытие попапа редактирование профиля
 editButton.addEventListener('click', () =>  {
-  const user = userInfo.getUserInfo()
-  nameInput.value = user.name;
-  jobInput.value = user.job;
   popupEdit.open();
   formValidators[profileEdit].resetValidation();
 });
@@ -90,3 +133,8 @@ const enableValidation = (config) => {
   });
 }
 enableValidation(validationSettings);
+
+popupWithImage.setEventListeners();
+popupAdd.setEventListeners();
+popupEdit.setEventListeners();
+popupAvatar.setEventListeners();

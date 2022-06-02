@@ -9,7 +9,8 @@ const popupAddElement = document.querySelector('.popup_add-element');
 const popupImageElement = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageTitle = document.querySelector('.popup__image-title');
-
+const editAvatarButton = document.querySelector(".profile__avatar-edit-button");
+const popupEditAvatar = document.querySelector(".popup_avatar");
 const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -23,7 +24,9 @@ const elementTemplate = '.element-template';
 const profileName = '.profile__name';
 const profileJob = '.profile__job';
 const profileEdit ='profile-edit';
+const profileAvatar ='.profile__avatar';
 const addElement = 'add-element';
+const editAvatarForm ='avatar-form';
 
 export {
   cardsContainer,
@@ -41,7 +44,11 @@ export {
   profileName,
   profileJob,
   profileEdit,
-  addElement
+  profileAvatar,
+  addElement,
+  popupEditAvatar,
+  editAvatarButton,
+  editAvatarForm
 }
 
 
