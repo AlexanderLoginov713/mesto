@@ -85,13 +85,11 @@ const popupEdit = new PopupWithForm(profilePopup, (data) => {
     userInfo.setUserInfo(data);
   })
   .catch(err => console.log(`Ошибка: ${err}`));
-  //.finally(() => {
-  //  popupEdit.renderLoading(false, 'Сохранить');
- // });
+
 });
 
 const popupAvatar = new PopupWithForm(popupEditAvatar, (data) => {
-    //popUpAvatar.loading(true);
+
     api.editAvatar(data)
     .then(data => {
       userInfo.setUserInfo(data);
@@ -99,9 +97,7 @@ const popupAvatar = new PopupWithForm(popupEditAvatar, (data) => {
     })
     .catch(err => console.log(`Ошибка: ${err}`));
     })
-    //.finally(() => {
-      //popupAvatar.loading(false);
-      //})
+
 
 //Открытие попапа редактирование аватара
 editAvatarButton.addEventListener('click', () => {
