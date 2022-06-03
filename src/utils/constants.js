@@ -9,8 +9,9 @@ const popupAddElement = document.querySelector('.popup_add-element');
 const popupImageElement = document.querySelector('.popup_view-image');
 const popupImage = document.querySelector('.popup__image');
 const popupImageTitle = document.querySelector('.popup__image-title');
-const editAvatarButton = document.querySelector(".profile__avatar-edit-button");
-const popupEditAvatar = document.querySelector(".popup_avatar");
+const editAvatarButton = document.querySelector('.profile__avatar-edit-button');
+const popupEditAvatar = document.querySelector('.popup_avatar');
+const popupConfirmDelete = document.querySelector('.popup_confirm');
 const validationSettings = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -48,7 +49,8 @@ export {
   addElement,
   popupEditAvatar,
   editAvatarButton,
-  editAvatarForm
+  editAvatarForm,
+  popupConfirmDelete
 }
 
 
