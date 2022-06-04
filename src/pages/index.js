@@ -1,13 +1,13 @@
 import './index.css';
 import {config} from '../utils/data.js'
-import Card from '../scripts/Сard.js';
-import FormValidator from '../scripts/FormValidator.js';
-import Section from '../scripts/Section.js';
-import PopupWithImage from '../scripts/PopupWithImage.js';
-import PopupWithForm from '../scripts/PopupWithForm.js';
-import PopupWithConfirm from '../scripts/PopupWithConfirm.js';
-import UserInfo from "../scripts/UserInfo.js";
-import Api from '../scripts/Api.js';
+import Card from '../components/Сard.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirm from '../components/PopupWithConfirm.js';
+import UserInfo from "../components/UserInfo.js";
+import Api from '../components/Api.js';
 
 import {
   validationSettings,
@@ -17,9 +17,9 @@ import {
   addButton,
   popupAddElement,
   popupImageElement,
-  popupImage,
-  popupImageTitle,
   elementTemplate,
+  nameInput,
+  jobInput,
   profileName,
   profileJob,
   profileEdit,
@@ -32,14 +32,12 @@ import {
 } from "../utils/constants.js";
 
 const api = new Api(config);
-
 let userId;
 
 Promise.all([api.getInitialCards(), api.getUserInfo()])
 .then(([initialCards, userData]) => {
   userInfo.setUserInfo(userData);
   userId = userData._id;
-  console.log(initialCards);
   cardList.renderItems(initialCards);
 })
 .catch((err) => {
@@ -53,9 +51,6 @@ const userInfo = new UserInfo({
 });
 
 function handleCardClick (name, link) {
-  popupImageTitle.textContent = name;
-  popupImage.src = link;
-  popupImage.alt = 'Изображение ' +  name;
   popupWithImage.open({name, link});
 }
 
@@ -82,6 +77,7 @@ const popupEdit = new PopupWithForm(profilePopup, (data) => {
   api.editProfile(data)
   .then(data => {
     userInfo.setUserInfo(data);
+    popupEdit.close();
   })
   .catch(err => console.log(`Ошибка: ${err}`))
   .finally(() => {
@@ -142,17 +138,14 @@ const popupAvatar = new PopupWithForm(popupEditAvatar, (data) => {
           });
         }
       });
-
-    const cardElement = card.createCard();
-    return cardElement;
-};
+      return card.createCard();
+    };
 
 const cardList = new Section({
   renderer: (card) => {
     cardList.addItem(createCard(card));
   },
 }, cardsContainer);
-
 
 //Подтверждение удаления карточки
 const popupConfirm = new PopupWithConfirm(popupConfirmDelete);
@@ -164,10 +157,15 @@ editAvatarButton.addEventListener('click', () => {
 });
 
 //Открытие попапа редактирование профиля
-editButton.addEventListener('click', () =>  {
+function handleProfileButtonClick () {
   popupEdit.open();
   formValidators[profileEdit].resetValidation();
-});
+  const data = userInfo.getUserInfo();
+  nameInput.value = data.name;
+  jobInput.value = data.job;
+}
+
+editButton.addEventListener('click', handleProfileButtonClick);
 
 //Открытие попапа добавления нового элемента (карточки)
 addButton.addEventListener('click', () => {
