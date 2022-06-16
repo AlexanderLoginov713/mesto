@@ -1,10 +1,10 @@
-# Project: Mesto
-A flexible one-page website with responsive image grid created according to a given training brief. 
-Represents the service Mesto: an interactive page where you can add photos, delete them and give the likes.
-Objective: to create the site, write some of the logic in JavaScript, publish in Git.
-Technologies used: 
-* HTML.
-* CSS (Grid, Flex, media queries).
-* JavaScript.
+# Проект Место
+Гибкий одностраничный сайт с отзывчивой сеткой изображений. Представляет собой сервис: интерактивную страницу, где можно добавлять фотографии, удалять их и ставить лайки. Задача: создать сайт, написать часть логики на JavaScript, опубликовать в Git.
+"Mesto" - это прототип социальной сети, куда пользователь может выкладывать фото, добавлять к ним название и оценивать их лайками. Так же у него есть возможность менять свои данные (имя/никнейм и специализация).
+### Используемые технологии: 
+* HTML 
+* CSS (Grid, Flex, медиа запросы)
+* JavaScript
+* Webpack
 
 https://alexanderloginov713.github.io/mesto/
