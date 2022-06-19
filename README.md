@@ -7,4 +7,8 @@
 * JavaScript
 * Webpack
 
+### Планы по улучшению:
+* добавить префиксы поставщиков
+* реализовать функциональность сайта с применением React.js
+
 https://alexanderloginov713.github.io/mesto/
